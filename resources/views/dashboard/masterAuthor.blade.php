@@ -13,7 +13,9 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa-solid fa-plus me-2"></i></i>Add Data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -23,8 +25,12 @@
     <div class="page-body">
         <div class="container-fluid">
             <div class="row row-deck row-cards">
-
+                {{ $dataTable->table() }}
             </div>
         </div>
     </div>
 @endsection
+
+@push('myscript')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+@endpush

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BooksDataTable;
 use Illuminate\Http\Request;
 
 class MasterBookController extends Controller
@@ -9,9 +10,9 @@ class MasterBookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(BooksDataTable $dataTable)
     {
-        return view('dashboard.masterBook', [
+        return $dataTable->render('dashboard.masterBook', [
             'title' =>  'Master Book',
             'pageTitle' =>  'Master Book',
         ]);

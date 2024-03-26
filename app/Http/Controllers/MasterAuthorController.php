@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\AuthorDataTable;
 use Illuminate\Http\Request;
 
 class MasterAuthorController extends Controller
@@ -9,9 +10,9 @@ class MasterAuthorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(AuthorDataTable $dataTable)
     {
-        return view('dashboard.masterAuthor', [
+        return $dataTable->render('dashboard.masterAuthor', [
             'title' =>  'Master Author',
             'pageTitle' =>  'Master Author',
         ]);

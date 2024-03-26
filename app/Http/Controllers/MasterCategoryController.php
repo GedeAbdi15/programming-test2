@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\CategoriesDataTable;
 
 class MasterCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CategoriesDataTable $dataTable)
     {
-        return view('dashboard.masterCategory', [
+        return $dataTable->render('dashboard.masterCategory', [
             'title' =>  'Master Category',
             'pageTitle' =>  'Master Category',
         ]);
