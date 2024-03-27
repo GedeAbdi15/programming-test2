@@ -21,6 +21,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'index']);
+
+// Category routes
 Route::get('/masters/categories', [MasterCategoryController::class, 'index']);
+Route::get('/masters/categories', [MasterCategoryController::class, 'create']);
+Route::post('/masters/categories', [MasterCategoryController::class, 'store']);
+Route::get('/masters/categories', [MasterCategoryController::class, 'edit']);
+Route::put('/masters/{id}/categories', [MasterCategoryController::class, 'update']);
+Route::delete('/masters/{id}/categories', [MasterCategoryController::class, 'destroy']);
+
+// Author routes
 Route::get('/masters/authors', [MasterAuthorController::class, 'index']);
+
+// Book routes
 Route::get('/masters/books', [MasterBookController::class, 'index']);

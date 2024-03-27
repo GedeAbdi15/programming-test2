@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\CategoriesDataTable;
+use App\Models\Category;
 
 class MasterCategoryController extends Controller
 {
@@ -31,7 +32,19 @@ class MasterCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => '',
+            'slug' => '',
+            'description' => '',
+        ]);
+
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('/masters/categories')->with('success', 'Berhasil Menambah Data');
     }
 
     /**
@@ -56,6 +69,19 @@ class MasterCategoryController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'description' => $request->description
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+            'slug' => $request->name,
+            'description' => $request->description
+        ]);
+        return redirect()->route('/masters/categories')->with('success', 'Sukses');
     }
 
     /**
@@ -64,5 +90,8 @@ class MasterCategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('/masters/{id}/categories')->with('success', 'Sukses');
     }
 }
